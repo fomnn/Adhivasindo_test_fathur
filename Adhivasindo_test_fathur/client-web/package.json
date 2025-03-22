@@ -1,0 +1,52 @@
+{
+  "name": "client-web",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build && tsc",
+    "serve": "vite preview",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.0.6",
+    "@tanstack/react-query": "^5.66.5",
+    "@tanstack/react-query-devtools": "^5.66.5",
+    "@tanstack/react-router": "^1.114.3",
+    "@tanstack/react-router-devtools": "^1.114.3",
+    "@tanstack/router-plugin": "^1.114.3",
+    "jwt-decode": "^4.0.0",
+    "ofetch": "^1.4.1",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "tailwindcss": "^4.0.6",
+    "zustand": "^5.0.3"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^4.10.1",
+    "@eslint-react/eslint-plugin": "^1.37.0",
+    "@iconify-json/bi": "^1.2.2",
+    "@iconify-json/ic": "^1.2.2",
+    "@iconify-json/iconamoon": "^1.2.2",
+    "@iconify-json/lets-icons": "^1.2.1",
+    "@iconify-json/material-symbols": "^1.2.16",
+    "@iconify-json/material-symbols-light": "^1.2.16",
+    "@iconify-json/solar": "^1.2.2",
+    "@svgr/core": "^8.1.0",
+    "@svgr/plugin-jsx": "^8.1.0",
+    "@tanstack/eslint-plugin-router": "^1.114.12",
+    "@types/react": "^19.0.8",
+    "@types/react-dom": "^19.0.3",
+    "@vitejs/plugin-react": "^4.3.4",
+    "daisyui": "^5.0.9",
+    "eslint": "^9.22.0",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.4.19",
+    "jsdom": "^26.0.0",
+    "typescript": "^5.7.2",
+    "unplugin-icons": "^22.1.0",
+    "vite": "^6.1.0",
+    "web-vitals": "^4.2.4"
+  }
+}

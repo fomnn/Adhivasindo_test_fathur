@@ -1,0 +1,640 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Hono Documentation",
+    "description": "Development documentation",
+    "version": "0.0.0"
+  },
+  "paths": {
+    "/api/auth/login": {
+      "post": {
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "token": {
+                      "type": "string",
+                      "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNtOGhpOXFkODAwMDBjenFrZTZ2Y3pjajkiLCJleHAiOjE3NDI1MDI0ODB9.8mOQN8hPmWNuWx8qu-0EmWwHvGdkpZhyMEHw5YWPbvM",
+                      "description": "JWT token for user authentication"
+                    },
+                    "user": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "example": "1234567890",
+                          "description": "Unique identifier for the user"
+                        },
+                        "email": {
+                          "type": "string",
+                          "example": "asep@example.com",
+                          "description": "Email address of the authenticated user"
+                        },
+                        "name": {
+                          "type": "string",
+                          "example": "John Doe",
+                          "description": "Full name of the authenticated user"
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "email",
+                        "name"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "token",
+                    "user"
+                  ]
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid password",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "message"
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "User not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "message"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "operationId": "postApiAuthLogin",
+        "parameters": [],
+        "description": "Login to the application",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "format": "email",
+                    "example": "name@example.com",
+                    "description": "User email address for authentication"
+                  },
+                  "password": {
+                    "type": "string",
+                    "minLength": 4,
+                    "example": "password123",
+                    "description": "User password with minimum 4 characters"
+                  }
+                },
+                "required": [
+                  "email",
+                  "password"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/auth/signup": {
+      "post": {
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "token": {
+                      "type": "string",
+                      "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNtOGhpOXFkODAwMDBjenFrZTZ2Y3pjajkiLCJleHAiOjE3NDI1MDI0ODB9.8mOQN8hPmWNuWx8qu-0EmWwHvGdkpZhyMEHw5YWPbvM",
+                      "description": "JWT token for user authentication"
+                    },
+                    "user": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "example": "1234567890",
+                          "description": "Unique identifier for the registered user"
+                        },
+                        "email": {
+                          "type": "string",
+                          "example": "asep@example.com",
+                          "description": "Email address of the registered user"
+                        },
+                        "name": {
+                          "type": "string",
+                          "example": "John Doe",
+                          "description": "Full name of the registered user"
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "email",
+                        "name"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "token",
+                    "user"
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Email already exists",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "message"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "operationId": "postApiAuthSignup",
+        "parameters": [],
+        "description": "Register to the application",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "format": "email",
+                    "example": "name@example.com",
+                    "description": "User email address for registration"
+                  },
+                  "password": {
+                    "type": "string",
+                    "minLength": 4,
+                    "example": "password123",
+                    "description": "User password with minimum 4 characters"
+                  },
+                  "name": {
+                    "type": "string",
+                    "minLength": 1,
+                    "example": "John Doe",
+                    "description": "User full name"
+                  }
+                },
+                "required": [
+                  "email",
+                  "password",
+                  "name"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/auth/verify": {
+      "post": {
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "user": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "example": "1234567890",
+                          "description": "Unique identifier for the verified user"
+                        },
+                        "email": {
+                          "type": "string",
+                          "example": "asep@example.com",
+                          "description": "Email address of the verified user"
+                        },
+                        "name": {
+                          "type": "string",
+                          "example": "John Doe",
+                          "description": "Full name of the verified user"
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "email",
+                        "name"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "user"
+                  ]
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "message"
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "User not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "message"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "operationId": "postApiAuthVerify",
+        "parameters": [],
+        "description": "Verify the token"
+      }
+    },
+    "/api/modules": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "modules": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "example": "123e4567-e89b-12d3-a456-426614174000",
+                            "description": "The unique identifier of the module"
+                          },
+                          "name": {
+                            "type": "string",
+                            "example": "User Management",
+                            "description": "The name of the module"
+                          },
+                          "createdAt": {
+                            "type": "string",
+                            "example": "2024-01-20T08:00:00Z",
+                            "description": "The timestamp when the module was created"
+                          },
+                          "updatedAt": {
+                            "type": "string",
+                            "example": "2024-01-20T10:30:00Z",
+                            "description": "The timestamp when the module was last updated"
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "name",
+                          "createdAt",
+                          "updatedAt"
+                        ]
+                      }
+                    }
+                  },
+                  "required": [
+                    "modules"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "operationId": "getApiModules",
+        "parameters": [],
+        "description": "Get all modules"
+      }
+    },
+    "/api/modules/{id}": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "module": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "example": "123e4567-e89b-12d3-a456-426614174000",
+                          "description": "The unique identifier of the module"
+                        },
+                        "name": {
+                          "type": "string",
+                          "example": "User Management",
+                          "description": "The name of the module"
+                        },
+                        "createdAt": {
+                          "type": "string",
+                          "example": "2024-01-20T08:00:00Z",
+                          "description": "The timestamp when the module was created"
+                        },
+                        "updatedAt": {
+                          "type": "string",
+                          "example": "2024-01-20T10:30:00Z",
+                          "description": "The timestamp when the module was last updated"
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "name",
+                        "createdAt",
+                        "updatedAt"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "module"
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Module not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "message"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "operationId": "getApiModulesById",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "id",
+            "required": true
+          }
+        ],
+        "description": "Get a module"
+      }
+    },
+    "/api/modules/{moduleId}/contents": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "contents": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "example": "123e4567-e89b-12d3-a456-426614174000"
+                          },
+                          "createdAt": {
+                            "type": "string",
+                            "example": "2023-01-01T00:00:00Z"
+                          },
+                          "updatedAt": {
+                            "type": "string",
+                            "example": "2023-01-02T00:00:00Z"
+                          },
+                          "title": {
+                            "type": "string",
+                            "example": "Introduction to TypeScript"
+                          },
+                          "content": {
+                            "type": "string",
+                            "example": "TypeScript is a strongly typed programming language..."
+                          },
+                          "moduleId": {
+                            "type": "string",
+                            "example": "123e4567-e89b-12d3-a456-426614174000"
+                          },
+                          "img_url": {
+                            "type": [
+                              "string",
+                              "null"
+                            ],
+                            "example": "https://example.com/images/typescript.jpg"
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "createdAt",
+                          "updatedAt",
+                          "title",
+                          "content",
+                          "moduleId",
+                          "img_url"
+                        ]
+                      }
+                    }
+                  },
+                  "required": [
+                    "contents"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "operationId": "getApiModulesByModuleIdContents",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "moduleId",
+            "required": true
+          }
+        ],
+        "description": "Get all contents"
+      }
+    },
+    "/api/modules/{moduleId}/contents/{id}": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "example": "123e4567-e89b-12d3-a456-426614174000"
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "example": "2023-01-01T00:00:00Z"
+                    },
+                    "updatedAt": {
+                      "type": "string",
+                      "example": "2023-01-02T00:00:00Z"
+                    },
+                    "title": {
+                      "type": "string",
+                      "example": "Introduction to TypeScript"
+                    },
+                    "content": {
+                      "type": "string",
+                      "example": "TypeScript is a strongly typed programming language..."
+                    },
+                    "moduleId": {
+                      "type": "string",
+                      "example": "123e4567-e89b-12d3-a456-426614174000"
+                    },
+                    "img_url": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "example": "https://example.com/images/typescript.jpg"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "createdAt",
+                    "updatedAt",
+                    "title",
+                    "content",
+                    "moduleId",
+                    "img_url"
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Content not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "message"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "operationId": "getApiModulesByModuleIdContentsById",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "moduleId",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "id",
+            "required": true
+          }
+        ],
+        "description": "Get a content"
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  }
+}
